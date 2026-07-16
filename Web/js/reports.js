@@ -25,9 +25,16 @@ async function resolveUserName(userId) {
   if (userNameCache.has(userId)) return userNameCache.get(userId);
 
   const userDoc = await getDoc(doc(db, "users", userId));
-  const name = userDoc.exists() ? (userDoc.data().name || userDoc.data().username || userId) : userId;
+  const name = userDoc.exists() ? (userDoc.data().name || userDoc.data().username || "Unknown") : "Unknown";
   userNameCache.set(userId, name);
   return name;
+}
+
+function compactUserAgent(userAgent) {
+  if (!userAgent) return "—";
+  const androidMatch = userAgent.match(/^Android\/(\S+)/);
+  if (androidMatch) return `Android ${androidMatch[1]}`;
+  return userAgent;
 }
 
 function matchesFilters(report) {
@@ -78,6 +85,7 @@ async function renderTable() {
       <td><span class="badge ${statusBadgeClass(status)}">${status}</span></td>
       <td>${dateText}</td>
       <td>${userName}</td>
+      <td>${compactUserAgent(report.userAgent)}</td>
     `;
     tableBody.appendChild(row);
   }

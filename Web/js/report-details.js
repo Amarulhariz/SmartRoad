@@ -143,7 +143,9 @@ async function loadReport() {
     try {
       if (report.photoUrl) {
         const storage = getStorage(app);
-        await deleteObject(ref(storage, report.photoUrl)).catch(() => {});
+        await deleteObject(ref(storage, report.photoUrl)).catch((photoErr) => {
+          console.warn("Report deleted, but photo removal from Storage failed:", photoErr);
+        });
       }
       await deleteDoc(reportRef);
       window.location.href = "reports.html";
