@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -45,8 +46,13 @@ public class RegisterActivity extends AppCompatActivity {
         editPassword = findViewById(R.id.editPassword);
         progressBar = findViewById(R.id.progressBar);
         MaterialButton buttonRegister = findViewById(R.id.buttonRegister);
+        TextView textGoToLogin = findViewById(R.id.textGoToLogin);
 
         buttonRegister.setOnClickListener(v -> attemptRegister());
+        textGoToLogin.setOnClickListener(v -> {
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+        });
     }
 
     private void attemptRegister() {

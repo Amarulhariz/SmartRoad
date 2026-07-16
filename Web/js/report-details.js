@@ -20,13 +20,27 @@ function statusBadgeClass(status) {
 
 async function resolveUserLabel(userId) {
   if (!userId) return "Unknown";
-  const userDoc = await getDoc(doc(db, "users", userId));
-  if (!userDoc.exists()) return userId;
-  const data = userDoc.data();
-  return `${data.name || "Unknown"} (@${data.username || "?"})`;
+  try {
+    const userDoc = await getDoc(doc(db, "users", userId));
+    if (!userDoc.exists()) return userId;
+    const data = userDoc.data();
+    return `${data.name || "Unknown"} (@${data.username || "?"})`;
+  } catch (err) {
+    console.warn("Failed to resolve user label:", err);
+    return "Unknown";
+  }
 }
 
 async function loadReport() {
+  try {
+    await loadReportUnsafe();
+  } catch (err) {
+    console.error("Failed to load report:", err);
+    detailCard.innerHTML = `<p>Failed to load this report: ${err.message}</p>`;
+  }
+}
+
+async function loadReportUnsafe() {
   if (!reportId) {
     detailCard.innerHTML = "<p>No report ID provided.</p>";
     return;
