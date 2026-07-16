@@ -1,6 +1,7 @@
 import { signOut } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
-import { collection, getDocs, doc, getDoc, orderBy, query } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
-import { auth, db } from "./firebase-config.js";
+import { collection, getDocs, doc, getDoc, addDoc, orderBy, query } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-storage.js";
+import { auth, db, app } from "./firebase-config.js";
 import { requireAuth } from "./auth-guard.js";
 
 const tableBody = document.getElementById("reportsTableBody");
@@ -104,4 +105,86 @@ document.getElementById("logoutLink").addEventListener("click", async (e) => {
   e.preventDefault();
   await signOut(auth);
   window.location.href = "login.html";
+});
+
+const addReportOverlay = document.getElementById("addReportOverlay");
+const addReportForm = document.getElementById("addReportForm");
+const addReportError = document.getElementById("addReportError");
+
+document.getElementById("openAddReportBtn").addEventListener("click", () => {
+  addReportForm.reset();
+  addReportError.textContent = "";
+  addReportOverlay.style.display = "flex";
+});
+
+document.getElementById("cancelAddReportBtn").addEventListener("click", () => {
+  addReportOverlay.style.display = "none";
+});
+
+function fileExtension(file) {
+  const parts = file.name.split(".");
+  return parts.length > 1 ? parts.pop() : "jpg";
+}
+
+async function uploadReportPhoto(file) {
+  const storage = getStorage(app);
+  const timestamp = Date.now();
+  const photoRef = ref(storage,
+      `hazard_photos/${auth.currentUser.uid}_${timestamp}.${fileExtension(file)}`);
+  await uploadBytes(photoRef, file);
+  return getDownloadURL(photoRef);
+}
+
+addReportForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  addReportError.textContent = "";
+
+  const hazardType = document.getElementById("newHazardType").value;
+  const description = document.getElementById("newDescription").value.trim();
+  const status = document.getElementById("newStatus").value;
+  const latitude = parseFloat(document.getElementById("newLatitude").value);
+  const longitude = parseFloat(document.getElementById("newLongitude").value);
+  const photoFile = document.getElementById("newPhoto").files[0];
+
+  if (!description) {
+    addReportError.textContent = "Description is required.";
+    return;
+  }
+  if (Number.isNaN(latitude) || latitude < -90 || latitude > 90) {
+    addReportError.textContent = "Enter a valid latitude between -90 and 90.";
+    return;
+  }
+  if (Number.isNaN(longitude) || longitude < -180 || longitude > 180) {
+    addReportError.textContent = "Enter a valid longitude between -180 and 180.";
+    return;
+  }
+
+  const submitBtn = addReportForm.querySelector("button[type='submit']");
+  submitBtn.disabled = true;
+  submitBtn.textContent = photoFile ? "Uploading photo..." : "Saving...";
+
+  try {
+    const photoUrl = photoFile ? await uploadReportPhoto(photoFile) : null;
+
+    const newReport = {
+      userId: auth.currentUser.uid,
+      hazardType,
+      description,
+      status,
+      latitude,
+      longitude,
+      timestamp: Date.now(),
+      photoUrl,
+      userAgent: "Added via Admin Portal"
+    };
+    const docRef = await addDoc(collection(db, "reports"), newReport);
+    allReports.unshift({ id: docRef.id, ...newReport });
+    renderTable();
+    addReportOverlay.style.display = "none";
+  } catch (err) {
+    addReportError.textContent = "Failed to save report: " + err.message;
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = "Save Report";
+  }
 });

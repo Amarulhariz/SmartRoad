@@ -38,7 +38,7 @@ import java.util.Set;
 public class HazardMapActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private static final String[] ALL_HAZARD_TYPES = {
-            "Pothole", "Flood", "Accident", "Fallen Tree", "Traffic Light"
+            "Pothole", "Flood", "Accident", "Fallen Tree", "Traffic Light", "Damaged Road Sign"
     };
 
     private static final Map<String, Integer> TYPE_ICONS = new HashMap<>();
@@ -48,6 +48,7 @@ public class HazardMapActivity extends AppCompatActivity implements OnMapReadyCa
         TYPE_ICONS.put("Accident", R.drawable.marker_accident);
         TYPE_ICONS.put("Fallen Tree", R.drawable.marker_fallen_tree);
         TYPE_ICONS.put("Traffic Light", R.drawable.marker_traffic_light);
+        TYPE_ICONS.put("Damaged Road Sign", R.drawable.marker_damaged_sign);
     }
 
     private GoogleMap map;

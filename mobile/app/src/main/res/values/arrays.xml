@@ -7,5 +7,6 @@
         <item>Accident</item>
         <item>Fallen Tree</item>
         <item>Traffic Light</item>
+        <item>Damaged Road Sign</item>
     </string-array>
 </resources>

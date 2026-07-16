@@ -29,6 +29,7 @@
         <option value="Accident">Accident</option>
         <option value="Fallen Tree">Fallen Tree</option>
         <option value="Traffic Light">Traffic Light</option>
+        <option value="Damaged Road Sign">Damaged Road Sign</option>
       </select>
 
       <select id="filterStatus">
@@ -41,6 +42,7 @@
       <input type="date" id="filterDate" />
 
       <button class="btn-secondary" id="clearFilters">Clear Filters</button>
+      <button class="btn-primary" id="openAddReportBtn" style="margin-top:0;">+ Add Report</button>
     </div>
 
     <table>
@@ -58,6 +60,48 @@
     </table>
 
     <div class="empty-state" id="emptyState" style="display:none;">No reports match your filters.</div>
+  </div>
+
+  <div class="modal-overlay" id="addReportOverlay" style="display:none;">
+    <form class="modal-card" id="addReportForm">
+      <h3>Add Hazard Report</h3>
+
+      <label for="newHazardType">Hazard Type</label>
+      <select id="newHazardType">
+        <option value="Pothole">Pothole</option>
+        <option value="Flood">Flood</option>
+        <option value="Accident">Accident</option>
+        <option value="Fallen Tree">Fallen Tree</option>
+        <option value="Traffic Light">Traffic Light</option>
+        <option value="Damaged Road Sign">Damaged Road Sign</option>
+      </select>
+
+      <label for="newDescription">Description</label>
+      <textarea id="newDescription" rows="3" style="width:100%; padding:10px; border:1px solid var(--border); border-radius:6px; font-size:14px;"></textarea>
+
+      <label for="newStatus">Status</label>
+      <select id="newStatus">
+        <option value="New">New</option>
+        <option value="Under Investigation">Under Investigation</option>
+        <option value="Resolved">Resolved</option>
+      </select>
+
+      <label for="newLatitude">Latitude</label>
+      <input type="number" id="newLatitude" step="any" placeholder="e.g. 3.1390" />
+
+      <label for="newLongitude">Longitude</label>
+      <input type="number" id="newLongitude" step="any" placeholder="e.g. 101.6869" />
+
+      <label for="newPhoto">Photo (optional)</label>
+      <input type="file" id="newPhoto" accept="image/*" />
+
+      <div class="error-text" id="addReportError"></div>
+
+      <div class="actions-bar">
+        <button type="submit" class="btn-primary" style="margin-top:0;">Save Report</button>
+        <button type="button" class="btn-secondary" id="cancelAddReportBtn">Cancel</button>
+      </div>
+    </form>
   </div>
 
   <script type="module" src="js/reports.js"></script>

@@ -8,6 +8,10 @@ const params = new URLSearchParams(window.location.search);
 const reportId = params.get("id");
 const detailCard = document.getElementById("detailCard");
 
+const HAZARD_TYPES = [
+  "Pothole", "Flood", "Accident", "Fallen Tree", "Traffic Light", "Damaged Road Sign"
+];
+
 function statusBadgeClass(status) {
   if (status === "Resolved") return "badge-resolved";
   if (status === "Under Investigation") return "badge-investigating";
@@ -46,7 +50,13 @@ async function loadReport() {
 
     <div class="detail-row">
       <div class="key">Hazard Type</div>
-      <div class="val">${report.hazardType || "—"}</div>
+      <div class="val">
+        <select id="editHazardType">
+          ${HAZARD_TYPES.map((type) =>
+            `<option value="${type}" ${report.hazardType === type ? "selected" : ""}>${type}</option>`
+          ).join("")}
+        </select>
+      </div>
     </div>
     <div class="detail-row">
       <div class="key">Status</div>
@@ -54,7 +64,9 @@ async function loadReport() {
     </div>
     <div class="detail-row">
       <div class="key">Description</div>
-      <div class="val">${report.description || "—"}</div>
+      <div class="val">
+        <textarea id="editDescription" rows="3" style="width:100%; padding:8px; border:1px solid var(--border); border-radius:6px; font-size:14px;">${report.description || ""}</textarea>
+      </div>
     </div>
     <div class="detail-row">
       <div class="key">Reported By</div>
@@ -74,6 +86,10 @@ async function loadReport() {
     </div>
 
     <div class="actions-bar">
+      <button class="btn-primary" id="saveEditsBtn" style="margin-top:0;">Save Changes</button>
+    </div>
+
+    <div class="actions-bar">
       <select id="statusSelect">
         <option value="New" ${status === "New" ? "selected" : ""}>New</option>
         <option value="Under Investigation" ${status === "Under Investigation" ? "selected" : ""}>Under Investigation</option>
@@ -84,6 +100,28 @@ async function loadReport() {
     </div>
     <div class="error-text" id="actionMessage"></div>
   `;
+
+  document.getElementById("saveEditsBtn").addEventListener("click", async () => {
+    const newType = document.getElementById("editHazardType").value;
+    const newDescription = document.getElementById("editDescription").value.trim();
+    const messageEl = document.getElementById("actionMessage");
+
+    if (!newDescription) {
+      messageEl.style.color = "#C43E00";
+      messageEl.textContent = "Description cannot be empty.";
+      return;
+    }
+
+    try {
+      await updateDoc(reportRef, { hazardType: newType, description: newDescription });
+      messageEl.style.color = "#2E7D32";
+      messageEl.textContent = "Changes saved.";
+      loadReport();
+    } catch (err) {
+      messageEl.style.color = "#C43E00";
+      messageEl.textContent = "Failed to save changes: " + err.message;
+    }
+  });
 
   document.getElementById("updateStatusBtn").addEventListener("click", async () => {
     const newStatus = document.getElementById("statusSelect").value;

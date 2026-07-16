@@ -27,9 +27,11 @@ service cloud.firestore {
 
     match /reports/{reportId} {
       allow read: if isSignedIn();
-      allow create: if isSignedIn() &&
-        request.resource.data.userId == request.auth.uid &&
-        request.resource.data.status == "New";
+      allow create: if isSignedIn() && (
+        (request.resource.data.userId == request.auth.uid &&
+          request.resource.data.status == "New") ||
+        isAdmin()
+      );
       allow update: if isAdmin();
       allow delete: if isAdmin();
     }
