@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SmartRoad Admin</title>
+</head>
+<body>
+  <script type="module">
+    import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+    import { auth } from "./js/firebase-config.js";
+
+    onAuthStateChanged(auth, (user) => {
+      window.location.href = user ? "dashboard.html" : "login.html";
+    });
+  </script>
+</body>
+</html>

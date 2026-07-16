@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="hazard_types">
+        <item>Select Hazard Type</item>
+        <item>Pothole</item>
+        <item>Flood</item>
+        <item>Accident</item>
+        <item>Fallen Tree</item>
+        <item>Traffic Light</item>
+    </string-array>
+</resources>

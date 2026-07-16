@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SmartRoad</string>
+    <string name="google_maps_key">AIzaSyCjUX3EdQVJXJ7-LODjQrYu6q5IBGXlJM4</string>
+    <string name="home_greeting">Welcome, %1$s!</string>
+</resources>

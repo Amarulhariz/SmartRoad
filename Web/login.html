@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SmartRoad Admin — Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="login-wrapper">
+    <form class="login-card" id="loginForm">
+      <h1>SmartRoad Admin</h1>
+      <label for="email">Email</label>
+      <input type="email" id="email" required autocomplete="username" />
+
+      <label for="password">Password</label>
+      <input type="password" id="password" required autocomplete="current-password" />
+
+      <div class="error-text" id="errorText"></div>
+
+      <button type="submit" class="btn-primary">Log In</button>
+    </form>
+  </div>
+
+  <script type="module" src="js/login.js"></script>
+</body>
+</html>

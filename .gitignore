@@ -1,0 +1,18 @@
+# Android/Gradle build artifacts
+build/
+.gradle/
+*.iml
+captures/
+.cxx/
+.externalNativeBuild/
+local.properties
+
+# Android Studio project files (keep essential shared config)
+.idea/*
+!.idea/.gitignore
+!.idea/codeStyles/
+!.idea/runConfigurations/
+
+# OS junk files
+.DS_Store
+Thumbs.db

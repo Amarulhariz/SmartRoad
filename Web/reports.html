@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SmartRoad Admin — Manage Reports</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="navbar">
+    <span class="brand">SmartRoad Admin</span>
+    <div>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="reports.html">Manage Reports</a>
+      <a href="#" id="logoutLink">Log Out</a>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2>Manage Reports</h2>
+
+    <div class="toolbar">
+      <input type="text" id="searchInput" placeholder="Search description or hazard type..." />
+
+      <select id="filterType">
+        <option value="">All Types</option>
+        <option value="Pothole">Pothole</option>
+        <option value="Flood">Flood</option>
+        <option value="Accident">Accident</option>
+        <option value="Fallen Tree">Fallen Tree</option>
+        <option value="Traffic Light">Traffic Light</option>
+      </select>
+
+      <select id="filterStatus">
+        <option value="">All Statuses</option>
+        <option value="New">New</option>
+        <option value="Under Investigation">Under Investigation</option>
+        <option value="Resolved">Resolved</option>
+      </select>
+
+      <input type="date" id="filterDate" />
+
+      <button class="btn-secondary" id="clearFilters">Clear Filters</button>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Photo</th>
+          <th>Hazard Type</th>
+          <th>Description</th>
+          <th>Status</th>
+          <th>Date</th>
+          <th>Reported By</th>
+        </tr>
+      </thead>
+      <tbody id="reportsTableBody"></tbody>
+    </table>
+
+    <div class="empty-state" id="emptyState" style="display:none;">No reports match your filters.</div>
+  </div>
+
+  <script type="module" src="js/reports.js"></script>
+</body>
+</html>

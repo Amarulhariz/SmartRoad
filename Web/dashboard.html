@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SmartRoad Admin — Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="navbar">
+    <span class="brand">SmartRoad Admin</span>
+    <div>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="reports.html">Manage Reports</a>
+      <a href="#" id="logoutLink">Log Out</a>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2>Overview</h2>
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="value" id="statUsers">—</div>
+        <div class="label">Total Users</div>
+      </div>
+      <div class="stat-card">
+        <div class="value" id="statReports">—</div>
+        <div class="label">Total Reports</div>
+      </div>
+      <div class="stat-card">
+        <div class="value" id="statOpen">—</div>
+        <div class="label">Open Reports</div>
+      </div>
+      <div class="stat-card">
+        <div class="value" id="statResolved">—</div>
+        <div class="label">Resolved Reports</div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="js/dashboard.js"></script>
+</body>
+</html>

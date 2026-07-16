@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="smartroad_primary">#FF6F00</color>
+    <color name="smartroad_primary_dark">#C43E00</color>
+    <color name="smartroad_secondary">#1B3C53</color>
+    <color name="smartroad_background">#F7F4EF</color>
+
+    <color name="status_new">#1976D2</color>
+    <color name="status_investigating">#F9A825</color>
+    <color name="status_resolved">#2E7D32</color>
+</resources>

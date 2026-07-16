@@ -1,0 +1,261 @@
+:root {
+  --primary: #FF6F00;
+  --primary-dark: #C43E00;
+  --secondary: #1B3C53;
+  --background: #F7F4EF;
+  --status-new: #1976D2;
+  --status-investigating: #F9A825;
+  --status-resolved: #2E7D32;
+  --border: #E0DACF;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: var(--background);
+  color: #222;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--primary);
+  color: #fff;
+  padding: 14px 24px;
+}
+
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 20px;
+  font-size: 14px;
+}
+
+.navbar a:hover { text-decoration: underline; }
+
+.navbar .brand {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.login-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 36px;
+  width: 340px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+
+.login-card h1 {
+  color: var(--primary);
+  font-size: 24px;
+  margin-top: 0;
+}
+
+label {
+  display: block;
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 4px;
+  margin-top: 14px;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #fff;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.btn-primary:hover { background: var(--primary-dark); }
+
+.btn-secondary {
+  background: #fff;
+  color: var(--secondary);
+  border: 1px solid var(--secondary);
+}
+
+.btn-danger {
+  background: #C43E00;
+  color: #fff;
+}
+
+.error-text {
+  color: #C43E00;
+  font-size: 13px;
+  margin-top: 10px;
+  min-height: 16px;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.stat-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+}
+
+.stat-card .value {
+  font-size: 32px;
+  font-weight: bold;
+  color: var(--primary);
+}
+
+.stat-card .label {
+  font-size: 13px;
+  color: #666;
+  margin-top: 4px;
+}
+
+.toolbar {
+  display: flex;
+  gap: 12px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+.toolbar input, .toolbar select {
+  width: auto;
+  min-width: 160px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+th, td {
+  text-align: left;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}
+
+th {
+  background: var(--secondary);
+  color: #fff;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+tr:hover { background: #FBF7F0; }
+
+tr.clickable { cursor: pointer; }
+
+.thumbnail {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 6px;
+  display: block;
+}
+
+.thumbnail-placeholder {
+  width: 56px;
+  height: 56px;
+  border-radius: 6px;
+  background: var(--background);
+  border: 1px solid var(--border);
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.badge-new { background: var(--status-new); }
+.badge-investigating { background: var(--status-investigating); }
+.badge-resolved { background: var(--status-resolved); }
+
+.detail-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px;
+  margin-top: 20px;
+}
+
+.detail-card img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.detail-row {
+  display: flex;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.detail-row .key {
+  width: 160px;
+  font-weight: bold;
+  color: #555;
+  font-size: 13px;
+}
+
+.detail-row .val {
+  flex: 1;
+  font-size: 14px;
+}
+
+.actions-bar {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+  align-items: center;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px;
+  color: #888;
+}

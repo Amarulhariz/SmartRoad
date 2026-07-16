@@ -1,0 +1,20 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.SmartRoad" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/smartroad_primary</item>
+        <item name="colorPrimaryDark">@color/smartroad_primary_dark</item>
+        <item name="colorSecondary">@color/smartroad_secondary</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="android:windowBackground">@color/smartroad_background</item>
+        <item name="android:statusBarColor">@color/smartroad_primary</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+
+    <style name="Theme.SmartRoad" parent="Base.Theme.SmartRoad" />
+
+    <style name="Theme.SmartRoad.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/smartroad_primary</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash_icon</item>
+        <item name="postSplashScreenTheme">@style/Theme.SmartRoad</item>
+    </style>
+</resources>
