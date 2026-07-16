@@ -68,7 +68,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="Your Name" />
+            android:lineSpacingExtra="4dp"
+            android:text="MOHAMMAD AMARULHARIZ BIN MOHD FAIRUZ (2025301079)\nKHAIR IZZ KHAN BIN MAHADHIR (2025115579)\nISMA ZAHIN BIN AMIRUDDIN (2025180017)\nAMEEN AKEEF BIN MOHD ARIFF (2025120389)" />
 
         <TextView
             android:layout_width="match_parent"
@@ -84,7 +85,7 @@
             android:layout_marginTop="4dp"
             android:autoLink="web"
             android:textColorLink="@color/smartroad_secondary"
-            android:text="https://github.com/yourname/smartroad" />
+            android:text="https://github.com/Amarulhariz/SmartRoad" />
 
         <TextView
             android:id="@+id/textCopyright"
